@@ -1,8 +1,9 @@
 #include <stdio.h>
-/* WARNING: This is buggy code */
+/* WARNING: this is buggy code*/
 float sum_elements(float a[], unsigned length) {
+  float result;
   int i;
-  float result = 0;
+>>>>>>> a2b9695f91d55cf130ed8fb6752d238645f01571
 
   for (i = 0; i <= length - 1; i++)
     result += a[i];
@@ -10,6 +11,6 @@ float sum_elements(float a[], unsigned length) {
 }
 
 void main() {
-  float a[] = {1.0,2.0};
-  printf("%f", sum_elements(a, 0));
+  float a[] = {};
+  printf("%f", sum_elements(a,0));
 }
