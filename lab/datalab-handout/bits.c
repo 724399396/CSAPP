@@ -230,7 +230,7 @@ int fitsBits(int x, int n) {
  *   Rating: 2
  */
 int divpwr2(int x, int n) {
-    return 2;
+    return x >> n;
 }
 /* 
  * negate - return -x 
@@ -250,7 +250,7 @@ int negate(int x) {
  *   Rating: 3
  */
 int isPositive(int x) {
-  return 2;
+  return ~((x >> 31) & 0x01);
 }
 /* 
  * isLessOrEqual - if x <= y  then return 1, else return 0 
@@ -260,7 +260,11 @@ int isPositive(int x) {
  *   Rating: 3
  */
 int isLessOrEqual(int x, int y) {
-  return 2;
+  int x_sign = (x >> 31) & 0x01;
+  int y_sign = (y >> 31) & 0x01;
+  int sign_same = ((x + (~y))>>31) & (!(x_sign ^ y_sign));
+  int sign_diff = x_sign&(!y_sign);
+  return sign_same | sign_diff;
 }
 /*
  * ilog2 - return floor(log base 2 of x), where x > 0
@@ -284,7 +288,14 @@ int ilog2(int x) {
  *   Rating: 2
  */
 unsigned float_neg(unsigned uf) {
- return 2;
+  if( (uf >> 23) == 0xff)
+    return uf;
+  int sign = (uf >> 31) & 0x01;
+  int mask = 0x01 << 31;
+  if (!sign)
+    return uf & (~mask)
+  else
+    return uf | mask;
 }
 /* 
  * float_i2f - Return bit-level equivalent of expression (float) x
