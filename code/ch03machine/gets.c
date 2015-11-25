@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 char *gets(char *s) {
   int c;
   char *dest = s;

@@ -1,0 +1,5 @@
+long int simple_l(long int *xp, lont int y) {
+  long int t = *xp + y;
+  *xp = t;
+  return t;
+}
