@@ -3,3 +3,4 @@ int main() {
   printf("local at %p\n", &local);
   return 0;
 }
+
